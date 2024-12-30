@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'siroe_web';
+  title = 'Paqueteria';
 }

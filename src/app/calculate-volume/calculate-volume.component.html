@@ -1,0 +1,71 @@
+<form class="example-form" [formGroup]="cubicVolumeForm" (ngSubmit)="onSubmit()">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Cotizador</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="content">
+          <div class="left-side">
+            <p>
+              <mat-form-field>
+                <mat-label>Alto</mat-label>
+                <input formControlName="height" type="number" matInput maxlength="4" placeholder="Alto" />
+                <span matTextSuffix>&nbsp;cm </span>
+                @if (cubicVolumeForm.controls.height.hasError('required')) {
+                  <mat-error>Alto es <strong>requerido</strong></mat-error>
+                }
+                @if (cubicVolumeForm.controls.height.hasError('min')) {
+                  <mat-error>Alto debe ser mayor a 0</mat-error>
+                }
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <mat-label>Ancho</mat-label>
+                <input formControlName="width" type="number" matInput maxlength="4" placeholder="Ancho" />
+                <span matTextSuffix>&nbsp;cm </span>
+                @if (cubicVolumeForm.controls.width.hasError('required')) {
+                  <mat-error>Ancho es <strong>requerido</strong></mat-error>
+                }
+                @if (cubicVolumeForm.controls.width.hasError('min')) {
+                  <mat-error>Ancho debe ser mayor a 0</mat-error>
+                }
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <mat-label>Largo</mat-label>
+                <input formControlName="length" type="number" matInput maxlength="4" placeholder="Largo" />
+                <span matTextSuffix>&nbsp;cm </span>
+                @if (cubicVolumeForm.controls.length.hasError('required')) {
+                  <mat-error>Largo es <strong>requerido</strong></mat-error>
+                }
+                @if (cubicVolumeForm.controls.length.hasError('min')) {
+                  <mat-error>Largo debe ser mayor a 0</mat-error>
+                }
+              </mat-form-field>
+            </p>
+            @let numeroHeight = cubicVolumeForm.controls.height.value ? cubicVolumeForm.controls.height.value : 0;
+            @let numeroWidth = cubicVolumeForm.controls.width.value ? cubicVolumeForm.controls.width.value : 0;
+            @let numeroLength = cubicVolumeForm.controls.length.value ? cubicVolumeForm.controls.length.value : 0;
+            @let cubicVolume = numeroHeight * numeroWidth * numeroLength;
+            @let cubicPrice = cubicVolume * 100;
+          </div>
+          <div class="divider" role="separator" aria-label="Divider"></div>
+          <div class="right-side">
+            <img width="200" height="200" src="../assets/CubicVolume.jpg"/>
+          </div>
+        </div>
+        <label>Actualmente tiene un volumen de {{cubicVolume | number:"1.0-2"}} cm³</label>
+        <p></p>
+        <label>Costo del paquete {{cubicPrice | currency: 'CLP'}}</label>
+        @if (cubicVolumeForm.hasError('maxCubicVolume')) {
+          <mat-error>El volumen no puede superar los 2 metros cubicos.</mat-error>
+          <mat-error>Para volumenes mayores tiene que operar con un ejecutivo</mat-error>
+        }
+      </mat-card-content>
+      <mat-card-actions>
+        <button type="submit" [disabled]="cubicVolumeForm.invalid" mat-button>Calcular</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>

@@ -1,0 +1,42 @@
+<div>
+    <mat-card appearance="outlined">
+        <mat-card-header>
+            <mat-card-title>Cotizador</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                Se ha completado con exito el ingreso del paquete al sistema con fecha
+                {{this.volumenData.createDate | date: 'dd/MM/yyyy'}}
+            </p>
+            <div class="content">
+                <div>
+
+                    <h4>Resumen:</h4>
+                    <ul>
+                        <li>
+                            Alto: {{this.volumenData.height}} cm
+                        </li>
+                        <li>
+                            Ancho: {{this.volumenData.width}} cm
+                        </li>
+                        <li>
+                            Largo: {{this.volumenData.length}} cm
+                        </li>
+                    </ul>
+                    <p>
+                        Volumen total: {{this.volumenData.cubicVolume | number:"1.0-2"}} cm³
+                    </p>
+                    <p>
+                        Precio por volumen: $ {{this.volumenData.cubicPrice | currency: 'CLP'}}
+                    </p>
+                    <p>
+
+                    </p>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <a mat-button routerLink="/calculate-volume" ariaCurrentWhenActive="page">Crear nuevo paquete</a>
+        </mat-card-actions>
+    </mat-card>
+</div>
